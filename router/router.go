@@ -6,7 +6,7 @@ import (
 	"os"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
-	"github.com/e-capture/ECMConfiguration/controllers/ImportconfigController"
+	"github.com/e-capture/ECMRetencionDocumental/controllers/ImportconfigController"
 	"github.com/e-capture/ECMRetencionDocumental/controllers/RetencionController"
 )
 
@@ -31,7 +31,7 @@ func StartService()  {
 
 	e.POST("/api/v1/import", ImportconfigController.Import)
 	e.POST("/api/v1/importconfig", ImportconfigController.ImportConfig)
-	e.GET("/api/v1/roles/index", RetencionController.Index)
+	e.GET("/api/v1/retencion/index", RetencionController.Index)
 	e.Logger.Fatal(e.Start(":"+_port))
 }
 

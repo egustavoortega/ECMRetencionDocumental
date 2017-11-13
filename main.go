@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/e-capture/ECMConfiguration/router"
+	"github.com/e-capture/ECMRetencionDocumental/router"
 )
 
 func main()  {

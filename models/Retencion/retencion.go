@@ -5,8 +5,9 @@ import (
 
 )
 type Doctypes struct {
-
-	Name				string		`json:"name"`
+    Codigo				int64		`json:"codigo"`
+	Name_Serie			string		`json:"name_serie"`
+	Name_Subserie		string		`json:"name_subserie"`
 	Tipo_Soporte		string		`json:"tipo_soporte"`
 	Retencion_Ag		string		`json:"retencion_ag"`
 	Retencion_Ac		string		`json:"retencion_ac"`
@@ -21,9 +22,9 @@ type T_Doctype []Doctypes
 
 func Index(db *sql.DB) (*T_Doctype, error){
 
-	query := fmt.Sprintf(`select b.id Codigo1,a.id Codigo2,b.name Serie,a.name Subserie , a.tipo_soporte Soporte,a.retencion_ag,a.retencion_ac,a.retencion_ah,a.disposicion_final,a.digitalizacion,a.Procedimiento
+	query := fmt.Sprintf(`select right('000' + CAST( (CONCAT (b.id,a.id)) as varchar),3)  Codigo2,b.name Serie,a.name Subserie , a.tipo_soporte Soporte,a.retencion_ag,a.retencion_ac,a.retencion_ah,a.disposicion_final,a.digitalizacion,a.Procedimiento
 								 from doc_types as a, doc_type_groups as b, doc_storages as c
-                                 where c.id = b.storage_id
+								 where c.id = b.storage_id
 								 and a.typegroup_id=b.id`)
 
 	stmt, err := db.Prepare(query)
@@ -40,7 +41,10 @@ func Index(db *sql.DB) (*T_Doctype, error){
 	for rows.Next(){
 		regist := Doctypes{}
 		err := rows.Scan(
-			&regist.Name,
+			&regist.Codigo,
+			&regist.Name_Serie,
+			&regist.Name_Subserie,
+			&regist.Tipo_Soporte,
 			&regist.Retencion_Ac,
 			&regist.Retencion_Ag,
 			&regist.Retencion_Ah,
@@ -78,7 +82,9 @@ func GetAll(db *sql.DB) (*T_Doctype, error){
 	for rows.Next(){
 		regist := Doctypes{}
 		err := rows.Scan(
-			&regist.Name,
+			&regist.Codigo,
+			&regist.Name_Serie,
+			&regist.Name_Subserie,
 			&regist.Tipo_Soporte,
 			&regist.Retencion_Ag,
 			&regist.Retencion_Ac,

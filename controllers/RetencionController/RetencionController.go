@@ -13,9 +13,9 @@ func Index(c echo.Context) error {
 	db, err := db.Open()
 	defer db.Close()
 
-	result, err := Retencion.GetAll(db)
+	result, err := Retencion.Index(db)
 	if err != nil {
-		text := fmt.Sprintf("Error DB, error en la consulta a la base de datos en la tabla doc_storages, %s: ", err)
+		text := fmt.Sprintf("Error DB, error en la consulta a la base de datos., %s: ", err)
 		log.Write(text)
 		return err
 	}
