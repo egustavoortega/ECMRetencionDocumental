@@ -1,0 +1,1 @@
+2017/11/13 16:55:56 Error DB, error en la consulta a la base de datos., sql: Scan error on column index 4: unsupported Scan, storing driver.Value type <nil> into type *string:  2017-11-13 16:55:56.2918963 -0500 -05 m=+12.810203100

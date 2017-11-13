@@ -22,7 +22,7 @@ type T_Doctype []Doctypes
 
 func Index(db *sql.DB) (*T_Doctype, error){
 
-	query := fmt.Sprintf(`select right('000' + CAST( (CONCAT (b.id,a.id)) as varchar),3)  Codigo2,b.name Serie,a.name Subserie , a.tipo_soporte Soporte,a.retencion_ag,a.retencion_ac,a.retencion_ah,a.disposicion_final,a.digitalizacion,a.Procedimiento
+	query := fmt.Sprintf(`select right('000' + CAST( (CONCAT (b.id,a.id)) as varchar),3)  Codigo,b.name Serie,a.name Subserie , IsNull(a.tipo_soporte,0) Soporte, IsNull(a.retencion_ag,0) Retencion_AG,IsNull(a.retencion_ac,0)Retencion_AC,IsNull(a.retencion_ah,0) Retencion_AH,IsNull(a.disposicion_final,0) Disposicion_Final,IsNull(a.digitalizacion,0) Digitalizacion,IsNull(a.Procedimiento,0) Procedimiento
 								 from doc_types as a, doc_type_groups as b, doc_storages as c
 								 where c.id = b.storage_id
 								 and a.typegroup_id=b.id`)
